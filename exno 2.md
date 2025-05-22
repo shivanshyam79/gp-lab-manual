@@ -1,57 +1,54 @@
 # EXP-02: Create A Player Movement Using Pawn, Collectable, Player Health And Score.
-## date 12/03/2025
-## Aim
-To implement a basic player controller using the Character class in Unreal Engine, with movement controls, collectable items, a health system, and a score display.
+## Date:12-03-2025
+## Aim:
+To Create a player movement using pawn, collectible, player health and score.
 
-## Procedure
+## Procedure To Create and Destroy the coin:
+1.Create a Blueprint Actor named BP_Coin in the Content Browser.
 
-### 1. Create Player Character with Movement
-- Create a *Blueprint Class* based on Character (e.g., BP_PlayerCharacter).
-- Add a *Camera* and *Spring Arm* for third-person or first-person view.
-- In the *Event Graph*, add input bindings for movement:
-  - *MoveForward, **MoveRight* using InputAxis events.
-  - Use Add Movement Input for directional movement.
+2.Add a Static Mesh Component and assign a coin mesh.
 
-### 2. Create Collectable Item
-- Create a new *Actor Blueprint* (e.g., BP_Collectable).
-- Add a *Static Mesh* and *Sphere Collision* component.
-- On BeginOverlap with player:
-  - Destroy the collectable.
-  - Call a custom event or function on the player to increment score or health.
+3.Add a Rotating Movement Component for spinning (optional).
 
-### 3. Implement Health System
-- In BP_PlayerCharacter, add a *Health* variable (e.g., float, default: 100).
-- Create a *TakeDamage* function to subtract from Health.
-- Optionally, implement logic to handle 0 health (e.g., death or respawn).
+4.Open the Blueprint and implement the OnComponentBeginOverlap event.
 
-### 4. Implement Score System
-- Add a *Score* variable (int) in BP_PlayerCharacter.
-- When a collectable is picked up, increase the score.
-- Display score using *UMG Widget*:
-  - Create a Widget Blueprint (e.g., W_HUD).
-  - Add *Text Blocks* bound to Health and Score variables.
+5.Check if the overlapping actor is the player using a Cast To Player node.
 
-### 5. Setup Game Mode
-- Create a new *Game Mode Blueprint*.
-- Set BP_PlayerCharacter as the default pawn.
-- Set the HUD widget in the Game Mode’s BeginPlay using Create Widget and Add to Viewport.
+6.Destroy the coin using the Destroy Actor node on overlap.
 
-## Output
+7.Increment the player's score with a Score Variable.
 
-![21cd18e5-9ec4-4564-924c-8e07f8b1b762](https://github.com/user-attachments/assets/b5a5b22e-1e24-4d4b-a100-373233dcfab6)
+8.Place multiple BP_Coin instances in the level for collection.
 
-![9a6c0693-3ee8-4bd8-94a7-09de2a134f1c](https://github.com/user-attachments/assets/5b28f376-6367-4cc8-aee3-3e7628045efe) 
+## Output:
+
+![Screenshot 2025-05-20 214738](https://github.com/user-attachments/assets/72c26771-9d12-4783-a5dd-15788ecb579b)
+
+![Screenshot 2025-05-20 214800](https://github.com/user-attachments/assets/156f26c0-eea8-41e6-b0f1-05fc0fc1bfbb)
 
 
-![7995e34b-0a95-4501-bd08-f099c79d6312](https://github.com/user-attachments/assets/ab1c690c-3d5b-4de9-b9b0-44cbf849ef2e)
+## Procedure To Redirect to levels:
+1.Place a Box Trigger in the level from the Modes panel.
+
+2.Create a new Actor Blueprint or use the Level Blueprint for logic.
+
+3.Add an OnActorBeginOverlap event for the Box Trigger.
+
+4.Check if the overlapping actor is the player using Cast To Player.
+
+5.Use the Open Level node to specify the target level.
+
+6.Set the level name in the Open Level node.
+
+7.Test the trigger by overlapping with the player character.
+
+8.Ensure seamless transition by saving both levels properly.
+
+## Output:
+![Screenshot 2025-05-20 214924](https://github.com/user-attachments/assets/a38371af-5e0f-4f36-be14-36abbff1e4b2)
+
+![Screenshot 2025-05-20 214941](https://github.com/user-attachments/assets/654434d6-eff6-47c8-a45c-7e0788188364)
 
 
-
-## Result
-A working prototype was developed with:
-- Player movement using the Character class.
-- Collectable items that increase score or health.
-- A dynamic health system with logic for damage.
-- On-screen UI displaying player health and score.
-
-This system forms the basis for more advanced gameplay mechanics in Unreal Engine.
+## Result:
+Thus, To Create a player movement using pawn, collectible, player health, and score created and developed by unreal Engine.
